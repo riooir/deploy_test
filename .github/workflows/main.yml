@@ -57,14 +57,11 @@ jobs:
     needs: docker
     runs-on: ubuntu-latest
     steps:
-      - run: |
-        echo "$GIT_PASSWORD"
-        echo "$GIT_USERNAME"
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
           repository: 'riooir/deploy_test_k8s'
-          token: ${{ secrets.GIT_PASSWORD }}
+          #token: ${{ secrets.GIT_PASSWORD }}
       - name: modify the image
         run: |
           git config user.email st.ryu@coxspace.com
