@@ -57,6 +57,9 @@ jobs:
     needs: docker
     runs-on: ubuntu-latest
     steps:
+      - run: |
+        echo "$GIT_PASSWORD"
+        echo "$GIT_USERNAME"
       - uses: actions/checkout@v3
         name: changing the deployment of git repo
         with:
@@ -64,8 +67,6 @@ jobs:
           token: ${{ secrets.GIT_PASSWORD }}
       - name: modify the image
         run: |
-          echo "$GIT_PASSWORD"
-          echo "$GIT_USERNAME"
           git config user.email st.ryu@coxspace.com
           git config user.name st.ryu
           pwd
