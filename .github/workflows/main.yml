@@ -61,6 +61,7 @@ jobs:
         name: changing the deployment of git repo
         with:
           repository: 'riooir/deploy_test_k8s'
+          path: main
           #token: ${{ secrets.GIT_PASSWORD }}
       - name: modify the image
         run: |
