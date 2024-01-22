@@ -62,11 +62,10 @@ jobs:
         with:
           repository: 'riooir/deploy_test_k8s'
           token: ${{ secrets.GIT_PASSWORD }}
+      - name: modify the image
         run: |
           echo "$GIT_PASSWORD"
           echo "$GIT_USERNAME"
-      - name: modify the image
-        run: |
           git config user.email st.ryu@coxspace.com
           git config user.name st.ryu
           pwd
