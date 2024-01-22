@@ -52,7 +52,7 @@ jobs:
             with:
               context: .
               push: true
-              tags: tanmay238/images:app-${{ github.run_number }}
+              tags: riooir/deploy_test:app-${{ github.run_number }}
   modifygit:
     needs: docker
     runs-on: ubuntu-latest
