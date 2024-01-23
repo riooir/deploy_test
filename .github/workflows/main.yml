@@ -89,6 +89,7 @@ jobs:
           metheod: service-account
           k8s-url: https://k8s.coxspace.biz:16443
           k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+          kubeconfig: ${{ secrets.KUBECONFIG }}
       - name: Checkout source code
         uses: actions/checkout@v4
         with:
