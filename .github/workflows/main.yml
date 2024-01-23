@@ -88,7 +88,7 @@ jobs:
         with:
           metheod: service-account
           # k8s-url: https://k8s.coxspace.biz:16443
-          k8s-url: https://k8s.coxspace.biz
+          k8s-url: k8s.coxspace.biz
           k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
       - name: Checkout source code
