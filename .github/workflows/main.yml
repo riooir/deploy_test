@@ -78,3 +78,29 @@ jobs:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
           RUN_NUMBER: ${{ github.run_number }}
+  deploy:
+    name: Deploy
+    needs: [ docker, modifygit]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          metheod: service-account
+          k8s-url: https://k8s.coxspace.biz:16443
+          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          repository: 'riooir/deploy_test_k8s'
+          token: ${{ secrets.GIT_TOKEN }}
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: stryu-test
+          manifests: |
+            deployment.yaml
+          images: |
+            riooir/deploy-test/app-${{ RUN_NUMBER }}       
+      
+ 
