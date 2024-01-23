@@ -102,6 +102,6 @@ jobs:
           manifests: |
             deployment.yaml
           images: |
-            riooir/deploy-test/app-${{ github.run_number }}    
+            riooir/deploy_test/app-${{ github.run_number }}    
       
  
