@@ -86,17 +86,20 @@ jobs:
       - name: Set the Kubernetes context
         uses: azure/k8s-set-context@v2
         with:
-          metheod: service-account
-          k8s-url: https://k8s.coxspace.biz:16443
-          # k8s-url: k8s.coxspace.biz
-          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
-          #metheod: kubeconfig
-          #kubeconfig: ${{ secrets.KUBECONFIG }}
+          #metheod: service-account
+          #k8s-url: https://k8s.coxspace.biz:16443
+          #k8s-url: k8s.coxspace.biz
+          #k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+          metheod: kubeconfig
+          kubeconfig: ${{ secrets.KUBECONFIG }}
       - name: Checkout source code
         uses: actions/checkout@v4
         with:
           repository: 'riooir/deploy_test_k8s'
           token: ${{ secrets.GIT_TOKEN }}
+      - name: view deployment
+        run: |
+          cat deployment.yaml    
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v1
         with:
